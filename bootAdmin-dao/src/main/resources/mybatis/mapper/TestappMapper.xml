@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="TestappMapper">
+
+	<!-- <select id="getTestappConf" resultType="Map">
+		select
+		at.ID,at.SP_AUDIT_TYPE,at.SAMEMDNMAXNUM,at.MINSENDTOTAL,at.RETURN_TYPE,at.SP_AUDIT_NUMBER,at.SALEPRICE,at.ISREPORTNOW,at.ISVALIDBOME,
+		at.SAMECONTENTMAXNUM,at.CONTENT_TYPE,at.CHANNELGROUPID,sc.GNAME
+		from
+		APP_TEST_API_SETTING as at left join SMS_SEND_CHANNEL_GROUP as sc on at.CHANNELGROUPID=sc.ID
+		where 1 =1
+	</select>
+	<update id="updateTestapp" parameterType="form">
+		update
+		APP_TEST_API_SETTING
+		set
+		SP_AUDIT_TYPE = #{SP_AUDIT_TYPE}
+		,SAMEMDNMAXNUM
+		= #{SAMEMDNMAXNUM}
+		,MINSENDTOTAL = #{MINSENDTOTAL}
+		,RETURN_TYPE =
+		#{RETURN_TYPE}
+		,SP_AUDIT_NUMBER = #{SP_AUDIT_NUMBER}
+		,SALEPRICE =
+		#{SALEPRICE}
+		,ISREPORTNOW = #{ISREPORTNOW}
+		,ISVALIDBOME = #{ISVALIDBOME}
+		,SAMECONTENTMAXNUM = #{SAMECONTENTMAXNUM}
+		,CONTENT_TYPE =
+		#{CONTENT_TYPE}
+		,CHANNELGROUPID = #{CHANNELGROUPID}
+		where ID =#{ID}
+	</update>
+		<select id="getClientAppConf" resultType="Map">
+		select * from
+		sms_system_param where prm_type=2
+	</select> -->
+</mapper>

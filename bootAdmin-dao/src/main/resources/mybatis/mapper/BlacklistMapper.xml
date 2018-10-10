@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="BlacklistMapper">
+	<!-- <select id="getAllBlackcount" parameterType="page" resultType="Map">
+		select count(so.ID) count from (sms_black_phone as so left join
+		SMS_CHANNEL_INFO as sc on so.target_id=sc.ID) left join
+		SMS_SP_INFO as
+		au on so.target_id=au.ID
+		where 1 =1
+		<if test="formData.spServiceType != null and formData.spServiceType != '' and formData.spServiceType!=0 ">
+			and au.sp_service_type = ${formData.spServiceType}
+		</if>
+		<if test="formData.ID != null and formData.ID != '' ">
+			and so.ID = #{formData.ID}
+		</if>
+		<if test="formData.MDN != null and formData.MDN != '' ">
+			and so.MDN like '%'||#{formData.MDN}||'%' ESCAPE '/'
+		</if>
+		<if test="formData.TYPE != null and formData.TYPE != '' ">
+			and so.TYPE = ${formData.TYPE}
+		</if>
+		<if test="formData.DESCPTION != null and formData.DESCPTION != '' ">
+			and so.DESCPTION like '%'||#{formData.DESCPTION}||'%' ESCAPE '/'
+		</if>
+		<if test="formData.spName != null and formData.spName != '' ">
+			and so.type = 3 and so.target_id in (select id from sms_sp_info where sp_name=#{formData.spName})
+		</if>
+		<if test="formData.channelName != null and formData.channelName != '' ">
+			and so.type = 2 and so.target_id in (select id from sms_channel_info where config_name=#{formData.channelName})
+		</if>
+	</select>
+	<select id="getAllBlacklistp" parameterType="page" resultType="Map">
+		select
+		so.ID,so.MDN,case so.target_id when '0' then '全系统' else (case
+		so.TYPE
+		when '2' then sc.config_name else au.SP_NAME end) end as
+		SPID,so.CREATE_TIME,so.DESCPTION, case so.TYPE when '1' then '系统级'
+		when
+		'2'
+		then '通道级' else '应用级' end as TYPE
+		from (sms_black_phone as so
+		left
+		join SMS_CHANNEL_INFO as sc on
+		so.target_id=sc.ID) left join
+		SMS_SP_INFO as au on so.target_id=au.ID
+		where 1 =1
+		<if test="formData.spServiceType != null and formData.spServiceType != '' and formData.spServiceType!=0 ">
+			and au.sp_service_type = ${formData.spServiceType}
+		</if>
+		<if test="formData.ID != null and formData.ID != '' ">
+			and so.ID = #{formData.ID}
+		</if>
+		<if test="formData.MDN != null and formData.MDN != '' ">
+			and so.MDN like '%'||#{formData.MDN}||'%' ESCAPE '/'
+		</if>
+		<if test="formData.TYPE != null and formData.TYPE != '' ">
+			and so.TYPE = ${formData.TYPE}
+		</if>
+		<if test="formData.DESCPTION != null and formData.DESCPTION != '' ">
+			and so.DESCPTION like '%'||#{formData.DESCPTION}||'%' ESCAPE '/'
+		</if>
+		<if test="formData.spName != null and formData.spName != '' ">
+			and so.type = 3 and so.target_id in (select id from sms_sp_info where sp_name=#{formData.spName})
+		</if>
+		<if test="formData.channelName != null and formData.channelName != '' ">
+			and so.type = 2 and so.target_id in (select id from sms_channel_info where config_name=#{formData.channelName})
+		</if>
+		order by so.CREATE_TIME desc limit ${pageSize} offset ( ${currentPage
+		- 1 } * ${pageSize} )
+	</select>
+	<select id="checkPhone" parameterType="form" resultType="Map">
+		SELECT * FROM sms_black_phone
+		WHERE 1=1
+		<if test="MDN != null and MDN != '' ">
+			and MDN = #{MDN}
+		</if>
+		<if test="TYPE != null and TYPE != '' ">
+			and TYPE = ${TYPE}
+		</if>
+		<if test="SPID != null and SPID != '' ">
+			and target_id = ${SPID}
+		</if>
+		<if test="ID != null and ID != '' ">
+			and ID &lt;&gt; ${ID}
+		</if>
+	</select>
+	<select id="checkPhoneByTxt" parameterType="map" resultType="Map">
+		SELECT * FROM sms_black_phone
+		WHERE 1=1
+		<if test="MDN != null and MDN != '' ">
+			and MDN = #{MDN}
+		</if>
+		<if test="TYPE != null and TYPE != '' ">
+			and TYPE = ${TYPE}
+		</if>
+		<if test="SPID != null and SPID != '' ">
+			and target_id = ${SPID}
+		</if>
+		<if test="ID != null and ID != '' ">
+			and ID &lt;&gt; ${ID}
+		</if>
+	</select>
+	<select id="getAllBlacklist" resultType="Map">
+		select
+		ID,MDN,target_id,CREATE_TIME,DESCPTION,TYPE
+		from sms_black_phone
+	</select>
+
+	<select id="getBlacklistById" parameterType="form" resultType="Map">
+		select
+		ID,MDN,target_id,CREATE_TIME,DESCPTION,TYPE
+		from sms_black_phone
+		where
+		ID = ${ID}
+	</select>
+
+	<insert id="saveBlacklist" useGeneratedKeys="true" keyProperty="ID"
+		parameterType="form">
+		insert into
+		sms_black_phone
+		(id,MDN,target_id,create_time,DESCPTION,TYPE)
+		values(nextval('"sms_black_phone_id_seq"'),#{MDN},${SPID},now(),#{DESCPTION},${TYPE})
+	</insert>
+	<update id="updateBlacklist" parameterType="form">
+		update
+		sms_black_phone set
+		MDN = #{MDN}
+		,DESCPTION = #{DESCPTION}
+		,TYPE =${TYPE}
+		,target_id = ${SPID}
+		where ID =${ID}
+	</update>
+	<delete id="deleteBlacklist" parameterType="form">
+		delete from
+		sms_black_phone
+		where ID = ${ID}
+	</delete>
+	<insert id="insertBatchBlackList" useGeneratedKeys="true"
+		parameterType="java.util.List" keyProperty="ID">
+		insert into
+		sms_black_phone(MDN,create_time,TYPE,descption,target_id)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.MDN},now(),${item.TYPE},#{item.description},${item.SPID})
+		</foreach>
+	</insert>
+	<select id="selAllSysBlackList" parameterType="form" resultType="java.lang.String">
+		select mdn from sms_black_phone where type=${TYPE} 
+	</select>
+
+	<insert id="insBlackListMap" useGeneratedKeys="true"
+		keyProperty="ID" parameterType="map">
+		insert into
+		sms_black_phone
+		(id,MDN,target_id,create_time,DESCPTION,TYPE)
+		values(nextval('"sms_black_phone_id_seq"'),#{MDN},${SPID},now(),#{description},${TYPE})
+	</insert>
+	
+	<select id="getDelSysBlacklistBymdn" parameterType="form" resultType="Map">
+		select * from sms_black_phone where mdn = #{mdn} and type = 1 and (descption is null or descption = '') 
+	</select>
+	
+	<select id="selBlackList" parameterType="form" resultType="java.lang.String">
+		SELECT mdn FROM sms_black_phone WHERE 1=1 
+		<if test="TYPE != null and TYPE != '' ">
+			and TYPE = ${TYPE} 
+		</if>
+		<if test="SPID != null and SPID != '' ">
+			and target_id = ${SPID} 
+		</if> 
+		and mdn in 
+		<foreach collection="mdns" open="(" close=")" separator="," item="item">
+			#{item} 
+		</foreach>
+	</select> -->
+	
+</mapper>

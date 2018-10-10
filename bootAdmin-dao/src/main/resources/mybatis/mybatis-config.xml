@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD SQL Map Config 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<typeAliases>
+		<!-- 页面传输数据 -->
+		<typeAlias type="com.sound.util.FormData" alias="form" />
+		<!-- 分页 -->
+		<typeAlias type="com.sound.util.PageInfo" alias="page" />
+		<typeAlias type="com.sound.entity.BlackObject" alias="BlackObject" />
+	</typeAliases>
+	<plugins>
+		<plugin interceptor="com.sound.plugin.MyBatisPagePlugin">
+			<property name="dialect" value="mysql" />
+			<property name="pageSqlId" value=".*Page.*" />
+		</plugin>
+	</plugins>
+	<mappers>
+		<mapper resource="mybatis/mapper/BlacklistMapper.xml" />
+		<mapper resource="mybatis/mapper/UserMapper.xml" />
+		<mapper resource="mybatis/mapper/tCodeMapper.xml" />
+		<mapper resource="mybatis/mapper/TestappMapper.xml" />
+		
+		<mapper resource="mybatis/mapper/ParameterMapper.xml" />
+	</mappers>
+</configuration>

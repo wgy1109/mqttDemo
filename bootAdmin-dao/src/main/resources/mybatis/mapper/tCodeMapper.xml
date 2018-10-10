@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="tCodeMapper">
+	<!-- <select id="getAlltCodeByPage" parameterType="page" resultType="Map">
+		select * from T_CODE where 1 =1 
+			<if test="formData.ID != null and formData.ID != '' ">
+				and  ID  = #{formData.ID}
+			</if>
+			<if test="formData.COL_NAME != null and formData.COL_NAME != '' ">
+				and  COL_NAME  like  CONCAT(CONCAT('%', #{formData.COL_NAME}),'%')  ESCAPE '/'
+			</if>
+			<if test="formData.COL_AGE != null and formData.COL_AGE != '' ">
+				and  COL_AGE  = #{formData.COL_AGE}
+			</if>
+			<if test="formData.COL_TIME != null and formData.COL_TIME != '' ">
+				and  COL_TIME  = #{formData.COL_TIME}
+			</if>
+	</select>
+	
+	<insert id="savetCode" parameterType="form">
+		insert into T_CODE (
+					COL_NAME
+					,
+					COL_AGE
+		) values(
+					#{COL_NAME}
+					,
+					#{COL_AGE}
+		)
+	</insert>
+	<update id="updatetCode" parameterType="form">
+		update T_CODE set  
+							ID = #{ID}
+							,COL_NAME = #{COL_NAME}
+							,COL_AGE = #{COL_AGE}
+			  where id =#{ID}
+	</update>
+	<delete id="deletetCode" parameterType="form">
+		delete from T_CODE where id = #{id}
+	</delete>
+	<select id="gettCodeInfoById"  parameterType="form" resultType="Map">
+		select * from T_CODE where id =  #{id}
+	</select>
+	<select id="selectMap" parameterType="form" resultType="Map">
+		${sql}
+	</select> -->
+</mapper>
