@@ -88,14 +88,6 @@ public class ParameterController extends BaseController{
 		return res>0 ? "200" : "201";
 	}
 	
-	/*public Map<String, Object> getValueByVersion(String version) throws Exception {
-		FormData formdata = new FormData();
-		formdata.put("version", version);
-		Map<String, Object> data = service.getValueByVersion(formdata);
-		return data;
-	}*/
-	
-	
 	
 	
 }

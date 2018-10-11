@@ -94,7 +94,7 @@ public class MqttTest {
 	            }
 	        });
 	        connection.listener(new DeviceMsgListener(service));
-//	        Thread.sleep(1000 * 30);   // 防止瞬间主线程关闭导致连接被关闭
+//	        Thread.sleep(1000 * 30);   // 防止瞬间主线程关闭导致连接被关闭,main方法测试用
 	    }
 
 }
