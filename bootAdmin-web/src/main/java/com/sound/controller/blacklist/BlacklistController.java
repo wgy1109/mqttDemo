@@ -45,13 +45,6 @@ public class BlacklistController extends BaseController {/*
 	@Autowired
 	RedisService redisService;
 
-	*//**
-	 * 初始化黑名单列表数据
-	 * 
-	 * @param page
-	 * @return
-	 * @throws Exception
-	 *//*
 	@RequestMapping("load")
 	@ResponseBody
 	public Map<String, Object> load(PageInfo page, HttpServletRequest request) throws Exception {
@@ -63,15 +56,6 @@ public class BlacklistController extends BaseController {/*
 		return result;
 	}
 
-	*//**
-	 * 跳转到编辑黑名单页面
-	 * 
-	 * @param ID
-	 * @param operate
-	 * @param session
-	 * @return
-	 * @throws Exception
-	 *//*
 	@RequestMapping("showInfo")
 	@ResponseBody
 	public Map<String, Object> showInfo(HttpSession session) throws Exception {
@@ -83,13 +67,7 @@ public class BlacklistController extends BaseController {/*
 		return result;
 	}
 
-	*//**
-	 * 修改黑名单信息
-	 * 
-	 * @param session
-	 * @return
-	 * @throws Exception
-	 *//*
+	
 	@SuppressWarnings("unchecked")
 	@RequestMapping("save")
 	@ResponseBody
